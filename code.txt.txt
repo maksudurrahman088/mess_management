@@ -1,0 +1,107 @@
+Query
+
+
+
+Create Database:
+
+CREATE DATABASE mess_management;
+
+
+
+Table create:
+
+CREATE TABLE account ( id int NOT NULL PRIMARY KEY, name varchar(255) NOT NULL, number int, deposit int, date int, month varchar(255), year varchar(255) );
+CREATE TABLE manager (
+    id int NOT NULL ,
+    number int NOT NULL,
+    name varchar(255),
+    email varchar(255) PRIMARY KEY,
+    password varchar(255),
+    mess_name varchar(255),
+FOREIGN KEY (id) REFERENCES account(id)
+   
+);
+CREATE TABLE bazar (
+    id int NOT NULL ,
+    number int NOT NULL PRIMARY KEY,
+    date varchar(255) ,
+    month varchar(255),
+    year varchar(255),
+    bazar_id int(12),
+    total_cost int(12),
+FOREIGN KEY (id) REFERENCES account(id)
+   
+);
+CREATE TABLE bazar_list (
+    id int NOT NULL ,
+    number int NOT NULL PRIMARY KEY,
+    item_name varchar(255),
+    date varchar(255),
+    month varchar(255),
+    year varchar(255),
+  FOREIGN KEY (number) REFERENCES bazar(number)
+   
+);
+CREATE TABLE meal (
+    id int NOT NULL,
+    mess_id int(12) NOT NULL,
+    number int NOT NULL,
+    date varchar(255),
+    month varchar(255),
+    year varchar(255),
+    which int(12) PRIMARY KEY,
+    
+    FOREIGN KEY (number) REFERENCES bazar(number)
+   
+);
+
+CREATE TABLE users (
+    id int NOT NULL ,
+    name varchar(255),
+    password varchar(255),
+    number int NOT NULL,
+    email varchar(255),
+    profile varchar(255),
+    position int(12) PRIMARY KEY,
+    FOREIGN KEY (email) REFERENCES maneger(email)
+   
+);
+
+Insert data
+
+-- Insert data into the account table
+INSERT INTO account (id, name, number, deposit, date, month, year) 
+VALUES 
+(1, 'Account 1', 123, 1000, 13, 'May', '2024'),
+(2, 'Account 2', 456, 2000, 14, 'May', '2024');
+
+-- Insert data into the manager table
+INSERT INTO manager (id, number, name, email, password, mess_name)
+VALUES 
+(1, 123, 'Manager 1', 'manager1@example.com', 'password1', 'Mess 1'),
+(2, 456, 'Manager 2', 'manager2@example.com', 'password2', 'Mess 2');
+
+-- Insert data into the bazar table
+INSERT INTO bazar (id, number, date, month, year, bazar_id, total_cost)
+VALUES 
+(1, 123, '13', 'May', '2024', 1, 500),
+(2, 456, '14', 'May', '2024', 2, 600);
+
+-- Insert data into the bazar_list table
+INSERT INTO bazar_list (id, number, item_name, date, month, year)
+VALUES 
+(1, 1, 'Item 1', '13', 'May', '2024'),
+(2, 2, 'Item 2', '14', 'May', '2024');
+
+-- Insert data into the meal table
+INSERT INTO meal (id, mess_id, number, date, month, year, which)
+VALUES 
+(1, 1, 123, '13', 'May', '2024', 1),
+(2, 2, 456, '14', 'May', '2024', 2);
+
+ Insert data into the users table
+INSERT INTO users (id, name, password, number, email, profile, position)
+VALUES 
+(1, 'User 1', 'password1', 123, 'person1@example.com', 'profile1', 1),
+(2, 'User 2', 'password2', 456, 'person2@example.com', 'profile2', 2);
+
